@@ -1,0 +1,1 @@
+@extends('layouts.cdr') @section('content')<div class="auth-card"><h1>Recuperar senha</h1><p>Enviaremos um link ao e-mail cadastrado.</p><form method="post" action="{{ route('password.email') }}">@csrf<label>E-mail<input type="email" name="email" required></label><button class="primary">Enviar link</button></form></div>@endsection
