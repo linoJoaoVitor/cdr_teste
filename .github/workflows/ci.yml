@@ -22,5 +22,5 @@ jobs:
       - run: printf '\nAPP_KEY=base64:%s\n' "$(openssl rand -base64 32)" >> .env
       - run: docker compose up -d --build
       - run: docker compose exec -T app php artisan migrate --force
-      - run: docker compose exec -T app php artisan test --configuration=phpunit.mariadb.xml --compact
+      - run: docker compose exec -T app vendor/bin/phpunit -c phpunit.mariadb.xml --no-coverage
       - run: curl --fail http://localhost:8080/entrar
