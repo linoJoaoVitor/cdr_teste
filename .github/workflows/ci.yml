@@ -14,3 +14,13 @@ jobs:
       - run: cp .env.example .env
       - run: php artisan key:generate
       - run: php artisan test
+  docker-mariadb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.docker.example .env
+      - run: printf '\nAPP_KEY=base64:%s\n' "$(openssl rand -base64 32)" >> .env
+      - run: docker compose up -d --build
+      - run: docker compose exec -T app php artisan migrate --force
+      - run: docker compose exec -T app php artisan test --configuration=phpunit.mariadb.xml --compact
+      - run: curl --fail http://localhost:8080/entrar

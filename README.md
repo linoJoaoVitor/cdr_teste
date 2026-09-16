@@ -4,7 +4,7 @@ Sistema Laravel 13 para consulta autenticada de SUP, CADUP/STFC e CADUP/SMP, com
 
 ## Instalação
 
-Requer PHP 8.5 com `mbstring`, `fileinfo`, PDO, Composer e um banco compatível com transações. Execute `composer install`, copie `.env.example` para `.env`, crie `database/database.sqlite` (ou configure MySQL), `php artisan key:generate` e `php artisan migrate`. Crie o primeiro administrador com `php artisan cdr:create-admin email@dominio.com "Nome"`. Inicie o servidor e um worker com `php artisan queue:work --timeout=3600`. Em produção, configure HTTPS, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true`, SMTP para redefinição de senha e limites `upload_max_filesize`/`post_max_size` maiores que 100 MB. Laravel Boost pode ser configurado com `php artisan boost:install` após instalar dependências.
+O banco padrão agora é MariaDB (`DB_CONNECTION=mariadb`). Há procedimentos completos para [Docker Compose e Debian 13, com Nginx ou Apache](docs/INSTALACAO.md), incluindo PHP 8.5, Composer, banco, servidor web, worker de fila e primeiro administrador.
 
 Não há cadastro público. O administrador cria contas, escolhe perfil e ativa/desativa usuários. Clientes autenticados acessam todos os relatórios; apenas administradores acessam `/admin`.
 
